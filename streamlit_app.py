@@ -5,7 +5,7 @@ import streamlit as st
 st.title("🎓 Nitec Pathways Planner")
 st.write(
     "This App is specific for Nitec Students who started Nitec in 2024 or 2025."
-    
+    "<br>"
     "Check your progression options after Nitec based on your GPA and intake year!",
     unsafe_allow_html=True
 )
