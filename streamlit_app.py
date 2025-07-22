@@ -3,7 +3,7 @@
 import streamlit as st
 
 st.title("🎓 Nitec Pathways Planner")
-st.write("This App is specific for Nitec Students who started Nitec in 2024 or 2025. Check your progression options after Nitec based on your GPA and intake year!")
+st.write("This App is specific for Nitec Students who started Nitec in 2024 or 2025.<br>Check your progression options after Nitec based on your GPA and intake year!")
 
 # Input collection
 gpa = st.number_input("📊 Enter your GPA (e.g., 2.8):", min_value=0.0, max_value=4.0, step=0.1)
