@@ -1,118 +1,101 @@
-# nitec_pathways_app.py
-
 import streamlit as st
 
-st.title("🎓 Nitec Pathways Planner")
-st.write(
-    "This App is specific for Nitec Students who started Nitec in 2024 or 2025."
-    "<br>"
-    "Check your progression options after Nitec based on your GPA and intake year!",
-    unsafe_allow_html=True
-)
+st.set_page_config(page_title="Nitec Pathways Progression Planner", page_icon="🎓", layout="centered")
 
-# Input collection
-gpa = st.number_input("📊 Enter your GPA (e.g., 2.8):", min_value=0.0, max_value=4.0, step=0.1)
+st.title("🎓 Nitec Pathways Progression Planner")
 
-# Intake year buttons
-st.write("📅 What year did you start your Nitec journey?")
+st.write("This App is specific for Nitec Students who started in 2024 or 2025.<br>Check your progression options after Nitec based on your GPA and intake year!", unsafe_allow_html=True)
+
+gpa = st.number_input("Enter your GPA:", min_value=0.0, max_value=4.0, step=0.01)
 col1, col2 = st.columns(2)
-
-if 'intake_year' not in st.session_state:
-    st.session_state['intake_year'] = None
-
+intake_year = None
 with col1:
-    if st.button("2024"):
-        st.session_state['intake_year'] = 2024
+    if st.button("📅 2024 Intake"):
+        intake_year = 2024
 with col2:
-    if st.button("2025"):
-        st.session_state['intake_year'] = 2025
+    if st.button("📅 2025 Intake"):
+        intake_year = 2025
 
-if st.session_state['intake_year']:
-    intake_year = st.session_state['intake_year']
-    st.success(f"✅ Intake Year Selected: {intake_year}")
+hn_courses = """
+- Engineering with Business
+- Mechanical Engineering
+- AI Applications
+- Applied Food Science
+- Architectural Technology
+- Automotive Engineering
+- Bio-Chemical Technology
+- Business Information Systems
+- Chemical Process Technology
+- Civil & Structural Engineering Design
+- Communication Design
+- Cyber & Network Security
+- Data Engineering
+- Electrical Engineering
+- Electronics Engineering
+- Facilities Management & Engineering
+- Film & Video Production
+- Immersive Applications & Game
+- IT Applications Development
+- IT Systems & Networks
+- Integrated Mechanical & Electrical Design
+- Interior & Product Design
+- Landscape Management & Design
+- Marine Engineering
+- Marine & Offshore Technology
+- Mechatronics Engineering
+- Offshore & Marine Engineering Design
+- Operational & Information Technology
+- Rapid Transit Engineering
+- Robotics & Smart Systems
+- Security System Integration
+- Technical Theatre & Production
+- Vertical Transportation
+- Visual Merchandising
+"""
 
-    if st.button("Check My Pathways"):
-        pathway_count = 0  # Initialize counter
+def display_pathway(title, intake, graduation, curriculum, duration, courses=None):
+    st.markdown(f"""
+    | ➡️ **Recommended Pathway** | {title} |
+    |----------------------------|-----|
+    | 📅 **Next Intake** | {intake} |
+    | 🎓 **Graduation** | {graduation} |
+    | 🗂️ **Curriculum** | {curriculum} |
+    | ⏱️ **Duration** | {duration} |
+    """)
+    if courses:
+        st.markdown(f"**Available Courses:**\n{courses}")
+    st.markdown("---")  # Separator for clarity after each pathway
 
-        def display_pathway(content):
-            st.markdown(f"""
-<p style='font-size:16px'>
-{content}
-</p>
-<hr>
-""", unsafe_allow_html=True)
+if intake_year and gpa:
+    pathway_count = 0
+    st.markdown("---")
 
-        if gpa >= 3.5:
-            grad_year = intake_year + 2
-            poly_grad_year = grad_year + 3
-            display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> Polytechnic (via EAE/JPAE)<br>
-<b>📅 Next Intake:</b> Apr {grad_year}<br>
-<b>🎓 Graduation:</b> Mar {poly_grad_year}<br>
-<b>🗂️ Curriculum:</b> Polytechnic Diploma<br>
-<b>⏱️ Duration:</b> 3 years
-""")
-            pathway_count += 1
+    if gpa >= 3.5:
+        pathway_count += 1
+        display_pathway("Polytechnic Progression", f"Apr {intake_year + 2}", f"Mar {intake_year + 5}", "Polytechnic Diploma", "3 years")
 
-        if intake_year == 2024:
-            if gpa >= 3.0:
-                display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> Accelerated Higher Nitec (Old Curriculum)<br>
-<b>📅 Next Intake:</b> Apr 2026<br>
-<b>🎓 Graduation:</b> Mar 2027<br>
-<b>🗂️ Curriculum:</b> Higher Nitec<br>
-<b>⏱️ Duration:</b> 1 year
-""")
-                pathway_count += 1
+    if gpa >= 3.0:
+        pathway_count += 1
+        display_pathway("Technical Diploma (TED)", f"Apr {intake_year + 2}", f"Mar {intake_year + 4}", "Technical Engineer Diploma", "2 years", "- Automotive Engineering\n- Civil & Structural Engineering\n- Electrical Engineering (Clean Energy)\n- Machine Technology")
 
-            if gpa >= 2.3:
-                display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> NEW Higher Nitec<br>
-<b>📅 Next Intake:</b> Apr 2026<br>
-<b>🎓 Graduation:</b> Mar 2028<br>
-<b>🗂️ Curriculum:</b> Higher Nitec<br>
-<b>⏱️ Duration:</b> 2 years
-""")
-                pathway_count += 1
+    if gpa >= 3.0:
+        pathway_count += 1
+        display_pathway("Accelerated Higher Nitec (Old Curriculum)", f"Apr {intake_year + 2}", f"Mar {intake_year + 3}", "Higher Nitec", "1 year", "- Engineering with Business\n- Mechanical Engineering")
 
-        if intake_year == 2025:
-            if gpa >= 3.0:
-                display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> Accelerated NEW Higher Nitec<br>
-<b>📅 Next Intake:</b> Apr 2027<br>
-<b>🎓 Graduation:</b> Mar 2028<br>
-<b>🗂️ Curriculum:</b> Higher Nitec<br>
-<b>⏱️ Duration:</b> 1 year
-""")
-                pathway_count += 1
+    if 2.8 <= gpa < 3.0 and intake_year == 2024:
+        pathway_count += 1
+        display_pathway("NEW Higher Nitec (Selective: ECE & Sport Mgmt)", "Apr 2026", "Mar 2028", "Higher Nitec", "2 years", "- Early Childhood Education\n- Sport Management")
 
-            if gpa >= 2.3:
-                display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> NEW Higher Nitec<br>
-<b>📅 Next Intake:</b> Apr 2027<br>
-<b>🎓 Graduation:</b> Mar 2029<br>
-<b>🗂️ Curriculum:</b> Higher Nitec<br>
-<b>⏱️ Duration:</b> 2 years
-""")
-                pathway_count += 1
+    if gpa >= 2.3:
+        pathway_count += 1
+        grad_year = 2028 if intake_year == 2024 else 2029
+        display_pathway("NEW Higher Nitec", f"Apr {intake_year + 2}", f"Mar {grad_year}", "Higher Nitec", "2 years", hn_courses)
 
-        if gpa >= 1.9:
-            display_pathway(f"""
-<b>➡️ Recommended Pathway:</b> ITE Work-Study Diploma<br>
-<b>📅 Next Intake:</b> Every April<br>
-<b>🎓 Graduation:</b> 2.5 years from intake<br>
-<b>🗂️ Curriculum:</b> Work-Study Diploma<br>
-<b>⏱️ Duration:</b> 2.5 years
-""")
-            pathway_count += 1
+    if gpa >= 1.9:
+        pathway_count += 1
+        display_pathway("ITE Work-Study Diploma", "Within 6 months post-graduation", "2.5 years from intake", "Work-Study Diploma", "2.5 years")
 
-        if pathway_count > 0:
-            st.subheader(f"🎓 You have {pathway_count} Progression Pathway{'s' if pathway_count != 1 else ''} available")
-        else:
-            st.warning("⚠️ Currently not eligible for Higher Nitec or Work-Study Diploma progression. Explore workforce entry or alternative skill upgrading pathways.")
-
-        st.success("🌻 Keep pushing forward on your educational journey! Every step counts towards your success!")
-
-else:
-    st.info("👆 Please select your intake year to proceed.")
-
+    if gpa < 1.9:
+        st.warning("Currently not eligible for Higher Nitec, Work-Study Diploma or Polytechnic progression. Explore National Service, workforce entry, or alternative skill upgrading pathways.")
+    else:
+        st.success(f"✅ You have {pathway_count} possible progression pathway(s). Keep pushing forward on your educational journey!")
