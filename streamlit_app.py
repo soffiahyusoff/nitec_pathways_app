@@ -82,9 +82,10 @@ if intake_year and gpa:
         pathway_count += 1
         display_pathway("Accelerated Higher Nitec (Old Curriculum)", f"Apr {intake_year + 2}", f"Mar {intake_year + 3}", "Higher Nitec", "1 year", "- Engineering with Business\n- Mechanical Engineering")
 
-    if 2.8 <= gpa < 3.0 and intake_year == 2024:
+    if gpa >= 2.8:
         pathway_count += 1
-        display_pathway("NEW Higher Nitec (Selective: ECE & Sport Mgmt)", "Apr 2026", "Mar 2028", "Higher Nitec", "2 years", "- Early Childhood Education\n- Sport Management")
+        grad_year = 2028 if intake_year == 2024 else 2029
+        display_pathway("NEW Higher Nitec (Selective: ECE & Sport Mgmt)", f"Apr {intake_year + 2}", f"Mar {grad_year}", "Higher Nitec", "2 years", "- Early Childhood Education\n- Sport Management")
 
     if gpa >= 2.3:
         pathway_count += 1
