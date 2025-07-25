@@ -79,24 +79,24 @@ if intake_year and gpa:
         display_pathway("Technical Diploma (TED)", f"Apr {intake_year + 2}", f"Mar {intake_year + 4}", "Technical Engineer Diploma", "2 years", "- Automotive Engineering\n- Civil & Structural Engineering\n- Electrical Engineering (Clean Energy)\n- Machine Technology")
 
     if gpa >= 3.0:
-    pathway_count += 1
-    if intake_year == 2024:
-        display_pathway(
-            "Accelerated Higher Nitec (Old Curriculum)",
-            "Apr 2026",
-            "Mar 2027",
-            "Higher Nitec",
-            "1 year",
-            "- Engineering with Business\n- Mechanical Engineering"
+        pathway_count += 1
+        if intake_year == 2024:
+            display_pathway(
+                "Accelerated Higher Nitec (Old Curriculum)",
+                "Apr 2026",
+                "Mar 2027",
+                "Higher Nitec",
+                "1 year",
+                "- Engineering with Business\n- Mechanical Engineering"
         )
-    elif intake_year == 2025:
-        display_pathway(
-            "Accelerated Higher Nitec (NEW Curriculum)",
-            "Apr 2028",
-            "Mar 2029",
-            "Higher Nitec",
-            "1 year",
-            "- Engineering with Business\n- Mechanical Engineering"
+        elif intake_year == 2025:
+            display_pathway(
+                "Accelerated Higher Nitec (NEW Curriculum)",
+                "Apr 2028",
+                "Mar 2029",
+                "Higher Nitec",
+                "1 year",
+                "- Engineering with Business\n- Mechanical Engineering"
         )
 
     if gpa >= 2.8:
