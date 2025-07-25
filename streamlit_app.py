@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Nitec Pathways Progression Planner", page_icon="🎓", layout="centered")
 
-st.title("🎓 Nitec Pathways Progression Planner")
+st.markdown("## 🎓 Nitec Pathways Progression Planner")
 
 st.write("This App is specific for Nitec Students who started in 2024 or 2025.<br>Check your progression options after Nitec based on your GPA and intake year!", unsafe_allow_html=True)
 
