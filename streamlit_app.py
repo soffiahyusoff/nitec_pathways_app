@@ -78,7 +78,7 @@ if intake_year and gpa:
         pathway_count += 1
         display_pathway("Technical Diploma (TED)", f"Apr {intake_year + 2}", f"Mar {intake_year + 4}", "Technical Engineer Diploma", "2 years", "- Automotive Engineering\n- Civil & Structural Engineering\n- Electrical Engineering (Clean Energy)\n- Machine Technology")
 
-   if gpa >= 3.0:
+    if gpa >= 3.0:
     pathway_count += 1
     if intake_year == 2024:
         display_pathway(
@@ -98,7 +98,7 @@ if intake_year and gpa:
             "1 year",
             "- Engineering with Business\n- Mechanical Engineering"
         )
-        
+
     if gpa >= 2.8:
         pathway_count += 1
         grad_year = 2028 if intake_year == 2024 else 2029
