@@ -97,6 +97,6 @@ if intake_year and gpa:
         display_pathway("ITE Work-Study Diploma", "Within 6 months post-graduation", "2.5 years from intake", "Work-Study Diploma", "2.5 years")
 
     if gpa < 1.9:
-        st.warning("Currently not eligible for Higher Nitec, Work-Study Diploma or Polytechnic progression. Explore National Service, workforce entry, or alternative skill upgrading pathways.")
+        st.warning("Currently not eligible for Higher Nitec, Work-Study Diploma or Polytechnic progression. Explore National Service, workforce entry, or alternative skill upgrading pathways.💡 Keep pushing forward on your educational journey! Every step counts towards your success!")
     else:
-        st.success(f"✅ You have {pathway_count} possible progression pathway(s). Keep pushing forward on your educational journey!")
+        st.success(f"✅ You have {pathway_count} possible progression pathway(s). 💡 Keep pushing forward on your educational journey! Every step counts towards your success!")
